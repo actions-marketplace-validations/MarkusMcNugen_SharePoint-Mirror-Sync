@@ -1,6 +1,6 @@
 # action.yaml
-name: 'Sync to SharePoint'
-description: 'Upload one or more files in a directory to Sharepoint site using client ID and secret'
+name: 'SharePoint Mirror Sync'
+description: 'Sync a whole repo, or just specific files in a directory to a Sharepoint site using glob patterns and recrusive directory crawling with a client ID and secret'
 branding:
   icon: 'upload-cloud'
   color: 'blue'
@@ -106,4 +106,5 @@ runs:
     - ${{ inputs.sync_delete_whatif }}
     - ${{ inputs.max_upload_workers }}
     - ${{ inputs.debug }}
+
     - ${{ inputs.debug_metadata }}
