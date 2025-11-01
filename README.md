@@ -93,7 +93,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Upload to SharePoint
-        uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+        uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
         with:
           file_path: "**/*"
           host_name: "yourcompany.sharepoint.com"
@@ -1778,8 +1778,7 @@ docker run sharepoint-upload \
 
 ## 📞 Support
 
-- **🐛 Issues:** [GitHub Issues](https://github.com/AunalyticsManagedServices/sharepoint-file-upload-action/issues)
-- **💬 Discussions:** [GitHub Discussions](https://github.com/AunalyticsManagedServices/sharepoint-file-upload-action/discussions)
+- **🐛 Issues:** [GitHub Issues](https://github.com/MarkusMcNugen/SharePoint-Mirror-Sync/issues)
 
 ## 🙏 Acknowledgments
 
