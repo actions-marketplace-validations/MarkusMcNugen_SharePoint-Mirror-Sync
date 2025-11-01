@@ -1,7 +1,7 @@
 <div align="center">
   <img src="logo/logo.png" alt="SharePoint File Upload Action Logo" width="300">
 
-  # SharePoint File Upload GitHub Action
+  # SharePoint Mirror Sync Github Action
 
   > 🚀 Automatically sync files from GitHub to SharePoint with intelligent change detection and Markdown-to-HTML conversion
 
