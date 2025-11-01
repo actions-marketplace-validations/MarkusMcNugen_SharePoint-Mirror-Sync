@@ -530,7 +530,7 @@ exclude_patterns: "*.tmp,*.bak,.DS_Store,Thumbs.db,.git"
   uses: actions/checkout@v4
 
 - name: Sync All Files
-  uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+  uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     file_path: "**/*"
     file_path_recursive_match: true
@@ -552,7 +552,7 @@ exclude_patterns: "*.tmp,*.bak,.DS_Store,Thumbs.db,.git"
   uses: actions/checkout@v4
 
 - name: Sync Documentation
-  uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+  uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     file_path: "**/*.md"
     file_path_recursive_match: true
@@ -575,7 +575,7 @@ exclude_patterns: "*.tmp,*.bak,.DS_Store,Thumbs.db,.git"
   uses: actions/checkout@v4
 
 - name: Sync Clean Repository
-  uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+  uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     file_path: "**/*"
     file_path_recursive_match: true
@@ -598,7 +598,7 @@ exclude_patterns: "*.tmp,*.bak,.DS_Store,Thumbs.db,.git"
   uses: actions/checkout@v4
 
 - name: Sync to GovCloud
-  uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+  uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     file_path: "compliance/**/*"
     host_name: "agency.sharepoint.us"
@@ -621,7 +621,7 @@ exclude_patterns: "*.tmp,*.bak,.DS_Store,Thumbs.db,.git"
   uses: actions/checkout@v4
 
 - name: Full Sync with Deletion
-  uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+  uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     file_path: "docs/**/*"
     file_path_recursive_match: true
@@ -738,7 +738,7 @@ jobs:
   uses: actions/checkout@v4
 
 - name: Rebuild All Markdown HTML
-  uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+  uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     file_path: "**/*.md"
     file_path_recursive_match: true
@@ -831,18 +831,18 @@ Batch Metadata Updates:    Enabled (20 items/batch)
 
 ```yaml
 # Use defaults (recommended for most cases)
-- uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+- uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     # ... other parameters
 
 # Adjust for high-performance environments
-- uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+- uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     max_upload_workers: 8      # Increase concurrent uploads
     # ... other parameters
 
 # Conservative settings (minimize throttling risk)
-- uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+- uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     max_upload_workers: 2      # Reduce concurrent requests
     # ... other parameters
@@ -1254,13 +1254,13 @@ Enable detailed logging for troubleshooting and diagnostics.
 
 ```yaml
 # General debug only (recommended for most troubleshooting)
-- uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+- uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     # ... other parameters
     debug: true
 
 # Full debug mode (maximum verbosity)
-- uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+- uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     # ... other parameters
     debug: true
@@ -1390,7 +1390,7 @@ If sync deletion is marking unexpected files for deletion, enable **debug mode**
 
 ```yaml
 - name: Sync with Debug Output
-  uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+  uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     # ... your parameters
     sync_delete: true
@@ -1578,7 +1578,7 @@ Get-PnPAzureADAppSitePermission
 No workflow changes needed! Works identically:
 
 ```yaml
-- uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+- uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     site_name: "TeamSite"  # Must match granted site
     # ... other parameters (same as before)
@@ -1703,7 +1703,7 @@ Add before upload step to inspect files:
 Enable debug logging:
 ```yaml
 - name: Upload with Debug
-  uses: AunalyticsManagedServices/sharepoint-file-upload-action@v4
+  uses: MarkusMcNugen/SharePoint-Mirror-Sync@v1
   with:
     # ... parameters
     debug: true
