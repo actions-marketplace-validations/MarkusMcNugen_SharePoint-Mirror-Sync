@@ -1,0 +1,106 @@
+# action.yaml
+name: 'Sync to SharePoint'
+description: 'Upload one or more files in a directory to Sharepoint site using client ID and secret'
+inputs:
+  file_path:
+    description: 'Source file path (glob ok)'
+    required: true
+  site_name:
+    description: 'Sharepoint site name (see README.md)'
+    required: true
+  host_name:
+    description: 'Sharepoint host name (see README.md)'
+    required: true
+  upload_path:
+    description: 'Target upload path (see README.md)'
+    required: true
+  tenant_id:
+    description: 'Sharepoint tenant ID'
+    required: true
+  client_id:
+    description: 'Sharepoint client ID'
+    required: true
+  client_secret:
+    description: 'Sharepoint client secret'
+    required: true
+  max_retries:
+    description: 'Max retries for upload'
+    required: false
+    default: 3
+  login_endpoint:
+    description: 'Microsoft Online Login API Endpoint (see README.md)'
+    required: false
+    default: "login.microsoftonline.com"
+  graph_endpoint:
+    description: 'Microsoft Graph API Endpoint (see README.md)'
+    required: false
+    default: "graph.microsoft.com"
+  file_path_recursive_match:
+    description: 'Find files recursively in subdirectories specified in file_path'
+    required: false
+    default: "false"
+  force_upload:
+    description: 'Force upload all files regardless of changes (skips smart sync comparison)'
+    required: false
+    default: "false"
+  convert_md_to_html:
+    description: 'Convert Markdown files to HTML with Mermaid diagrams as SVG (best for SharePoint viewing)'
+    required: false
+    default: "true"
+  force_md_to_html_regeneration:
+    description: 'Force regeneration of HTML from .md files even if source unchanged (requires convert_md_to_html=true)'
+    required: false
+    default: "false"
+  exclude_patterns:
+    description: 'Comma-separated list of exclusion patterns (e.g., "*.pyc,__pycache__,*.log")'
+    required: false
+    default: ""
+  sync_delete:
+    description: 'Delete SharePoint files that no longer exist in the repository (mirror sync)'
+    required: false
+    default: "false"
+  sync_delete_whatif:
+    description: 'Preview deletions without actually deleting (requires sync_delete=true)'
+    required: false
+    default: "true"
+  max_upload_workers:
+    description: 'Maximum concurrent upload workers (1-10, default: 4 for Graph API limits). WARNING: Starting Sept 30, 2025, Microsoft will reduce per-app throttling to HALF the tenant limit.'
+    required: false
+    default: "4"
+  debug:
+    description: 'Enable general debug output (execution flow, decisions, file processing)'
+    required: false
+    default: "false"
+  debug_metadata:
+    description: 'Enable metadata-specific debug output (Graph API fields, column verification)'
+    required: false
+    default: "false"
+outputs:
+  return:
+    description: 'Function output'
+    # need to specify the extra `value` field for `composite` actions
+    value: ${{ steps.send-file.outputs.return }}
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.site_name }}
+    - ${{ inputs.host_name }}
+    - ${{ inputs.tenant_id }}
+    - ${{ inputs.client_id }}
+    - ${{ inputs.client_secret }}
+    - ${{ inputs.upload_path }}
+    - ${{ inputs.file_path }}
+    - ${{ inputs.max_retries }}
+    - ${{ inputs.login_endpoint }}
+    - ${{ inputs.graph_endpoint }}
+    - ${{ inputs.file_path_recursive_match }}
+    - ${{ inputs.force_upload }}
+    - ${{ inputs.convert_md_to_html }}
+    - ${{ inputs.force_md_to_html_regeneration }}
+    - ${{ inputs.exclude_patterns }}
+    - ${{ inputs.sync_delete }}
+    - ${{ inputs.sync_delete_whatif }}
+    - ${{ inputs.max_upload_workers }}
+    - ${{ inputs.debug }}
+    - ${{ inputs.debug_metadata }}
